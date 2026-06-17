@@ -1,0 +1,62 @@
+<div class="transfer-container">
+  <h1 class="page-title">Transfer Money</h1>
+ 
+  <div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <h2>{{modalTitle}}</h2>
+    <p>{{modalMessage}}</p>
+    <div *ngIf="modalCase === 'success'" class="modal-details-success">
+      <p><strong>Transaction ID:</strong> {{modalDetails.transactionId}}</p>
+      <p><strong>Status:</strong> {{modalDetails.status}}</p>
+      <p><strong>From Account:</strong> {{modalDetails.debitedFrom}}</p>
+      <p><strong>To Account:</strong> {{modalDetails.creditedTo}}</p>
+      <p><strong>Amount:</strong> {{modalDetails.amount}}</p>
+    </div>
+    <div *ngIf="modalCase === 'failure'" class="modal-details-fail">
+      <p><strong>Status:</strong> FAILED</p>
+      <p><strong>Error Code</strong> {{modalDetails.errorCode}}</p>
+      <p><strong>Message:</strong> {{modalDetails.message}}</p>
+    </div>
+
+    <br>
+    <br>
+<div class="modal-actions">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [routerLink]="['/dashboard', transferReq.fromAccountId]"
+      >
+        ← Back to Dashboard
+      </button>
+    </div>
+
+   
+  </div>
+</div>
+
+  <div class="transfer-card">
+    <div class="from">
+      <span class="label">From</span>
+      <span class="value">{{ transferReq.fromAccountId }}</span>
+    </div>
+ 
+    <label>To Account</label>
+    <input type="text" [(ngModel)]="transferReq.toAccountId" />
+ 
+    <label>Amount</label>
+    <input type="number" [(ngModel)]="transferReq.amount" />
+ 
+    <label>Note</label>
+    <input type="text" [(ngModel)]="note" />
+ 
+    <button class="primary" (click)="transferMoney()">
+      Transfer Now
+    </button>
+
+    <button class="cancel" (click)="cancelTransaction()">
+      Cancel
+    </button>
+  </div>
+</div>
+ 
+

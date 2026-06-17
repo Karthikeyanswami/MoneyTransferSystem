@@ -1,0 +1,28 @@
+<div class="login-page">
+    <div class="login-card">   
+      <div class="icon-circle">
+        ₹
+      </div>
+      <h2>Welcome Back</h2>
+      <div class="error-alert" *ngIf="errorMsg">
+        ⚠️ {{ errorMsg }}
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" placeholder="Enter your username" formControlName="username">
+        </div>
+  
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" formControlName="password">
+        </div>
+  
+        <button (click) = "onLogin()" type="submit" class="login-btn">
+          Login
+        </button>
+      </form>
+      <p class="forgot">Forgot password?</p>
+    </div>
+  </div>
+  

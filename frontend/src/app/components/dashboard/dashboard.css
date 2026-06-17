@@ -1,0 +1,104 @@
+.dashboard-container {
+    max-width: 420px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .welcome p {
+    margin: 0;
+    color: gray;
+  }
+  .welcome h2 {
+    margin: 5px 0 15px;
+  }
+
+  .balance-card {
+    background: linear-gradient(135deg, #1e88e5, #42a5f5);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  .balance-card .label {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  .balance-card h1 {
+    margin: 10px 0;
+    font-size: 28px;
+  }
+  .balance-card .account {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .action-box {
+    background: #f5f7fa;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .action-box p {
+    margin: 8px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .action-box:hover {
+    background: #e3f2fd;
+  }
+  
+  .logout {
+    background: #ffecec;
+  }
+
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    margin-top: 15px;
+  }
+  
+  .nav-item {
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .nav-item.active {
+    color: #1e88e5;
+    font-weight: bold;
+  }
+
+  .features-box {
+    background: #fff3cd;
+    border-left: 5px solid orange;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  
+  .features-box h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+  }
+  
+  .features-box ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13px;
+  }
+  

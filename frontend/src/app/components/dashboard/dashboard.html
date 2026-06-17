@@ -1,0 +1,45 @@
+<div class="dashboard-container">
+    <div class="welcome">
+      <p>Good Morning 👋</p>
+      <h2>{{ account.holderName }}</h2>
+    </div>
+  
+    
+    <div class="balance-card">
+      <p class="label">Available Balance</p>
+      <h1>₹ {{ account.balance | number:'1.2-2' }}</h1>
+      <p class="account">Account Number: {{account.id}}</p>
+    </div>
+  
+    
+    <div class="action-grid">
+      <div class="action-box" (click)="goTransfer()">
+        💸
+        <p>Transfer</p>
+      </div>
+  
+      <div class="action-box" (click)="goHistory()">
+        📜
+        <p>History</p>
+      </div>
+  
+      <div class="action-box" (click)="goProfile()">
+        👤
+        <p>Profile</p>
+      </div>
+  
+      <div class="action-box logout" (click)="logout()">
+        🚪
+        <p>Logout</p>
+      </div>
+    </div>
+  
+    
+    <div class="bottom-nav">
+      <div class="nav-item active">🏠 Home</div>
+      <div class="nav-item" (click)="goTransfer()">💸 Transfer</div>
+      <div class="nav-item" (click)="goHistory()">📜 History</div>
+    </div>
+  
+  </div>
+  
