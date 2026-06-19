@@ -1,0 +1,66 @@
+<div class="rw-root">
+
+  <div *ngIf="loading" class="rw-loading">Loading rewards…</div>
+
+  <div *ngIf="error" class="rw-error">
+    <i class="ti ti-alert-circle" aria-hidden="true"></i> {{ error }}
+  </div>
+
+  <ng-container *ngIf="!loading && !error && balance">
+
+    <!-- Hero -->
+    <div class="rw-hero">
+      <div class="rw-ring-wrap" aria-hidden="true">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#EEEDFE" stroke-width="10"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#7F77DD" stroke-width="10"
+            stroke-linecap="round"
+            [attr.stroke-dasharray]="314"
+            [attr.stroke-dashoffset]="314 - (314 * progressPercent / 100)"
+            transform="rotate(-90 60 60)"/>
+        </svg>
+        <div class="rw-ring-center">
+          <span class="rw-pts-big">{{ balance.pointsBalance }}</span>
+          <span class="rw-pts-lbl">points</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="rw-tier-name">{{ currentTier.name }}</p>
+        <p class="rw-tier-sub">
+          <ng-container *ngIf="currentTier.next; else maxTier">
+            {{ ptsToNextTier }} pts to {{ currentTier.next }}
+          </ng-container>
+          <ng-template #maxTier>Maximum tier reached</ng-template>
+        </p>
+        <div class="rw-progress-bar"
+             role="progressbar"
+             [attr.aria-valuenow]="progressPercent"
+             aria-valuemin="0"
+             aria-valuemax="100">
+          <div class="rw-progress-fill" [style.width.%]="progressPercent"></div>
+        </div>
+        <p class="rw-progress-label">
+          {{ balance.pointsBalance }} / {{ currentTier.nextAt ?? '∞' }} pts
+        </p>
+      </div>
+    </div>
+
+    <!-- Tier badges -->
+    <div class="rw-tier-badges">
+      <span *ngFor="let t of TIERS"
+        class="rw-badge"
+        [class.active]="isTierActive(t.name)"
+        [class.unlocked]="isTierUnlocked(t.min) && !isTierActive(t.name)">
+        {{ t.name }} · {{ t.min | number }}
+      </span>
+    </div>
+
+    <!-- Hint -->
+    <div class="rw-hint">
+      <i class="ti ti-bulb" aria-hidden="true"></i>
+      <span>{{ hintText }}</span>
+    </div>
+
+  </ng-container>
+</div>

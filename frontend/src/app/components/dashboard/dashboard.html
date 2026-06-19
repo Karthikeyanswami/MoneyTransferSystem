@@ -33,6 +33,9 @@
         <p>Logout</p>
       </div>
     </div>
+
+    <div class="section-label">🎁 Your Rewards</div>
+    <app-rewards [accountId]="account.id"></app-rewards>
   
     
     <div class="bottom-nav">
@@ -40,6 +43,8 @@
       <div class="nav-item" (click)="goTransfer()">💸 Transfer</div>
       <div class="nav-item" (click)="goHistory()">📜 History</div>
     </div>
+
+    
   
   </div>
   

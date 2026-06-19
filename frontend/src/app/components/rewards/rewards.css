@@ -1,0 +1,90 @@
+.rw-root { font-family: var(--font-sans, sans-serif); padding: 1rem 0; }
+
+.rw-loading {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.rw-error {
+  font-size: 14px;
+  color: var(--color-text-danger);
+  background: var(--color-background-danger);
+  border-radius: var(--border-radius-md);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rw-hero {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.rw-ring-wrap { position: relative; width: 120px; height: 120px; flex-shrink: 0; }
+.rw-ring-wrap svg { width: 120px; height: 120px; }
+.rw-ring-wrap circle { transition: stroke-dashoffset 0.8s ease; }
+
+.rw-ring-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.rw-pts-big  { font-size: 26px; font-weight: 500; color: var(--color-text-primary); line-height: 1; }
+.rw-pts-lbl  { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+.rw-tier-name { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+.rw-tier-sub  { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 12px; }
+
+.rw-progress-bar {
+  height: 6px;
+  background: var(--color-background-secondary);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.rw-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: #7F77DD;
+  transition: width 0.8s ease;
+}
+.rw-progress-label { font-size: 12px; color: var(--color-text-secondary); }
+
+.rw-tier-badges { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+.rw-badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 0.5px solid var(--color-border-tertiary);
+  color: var(--color-text-secondary);
+  background: var(--color-background-primary);
+}
+.rw-badge.unlocked { color: var(--color-text-primary); }
+.rw-badge.active {
+  background: #EEEDFE;
+  color: #534AB7;
+  border-color: #AFA9EC;
+  font-weight: 500;
+}
+
+.rw-hint {
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+.rw-hint i { font-size: 18px; color: #534AB7; }
