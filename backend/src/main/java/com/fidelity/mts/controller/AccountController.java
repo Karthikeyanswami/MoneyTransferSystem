@@ -48,10 +48,10 @@ public class AccountController {
 		return service.getTransactions(id);
 	}
 
-	@GetMapping("/{accountId}/rewards")
-    public Long getAccountRewards(@PathVariable int accountId) {
-		System.out.println(service.getRewards(accountId));
-        return service.getRewards(accountId);
+	@GetMapping("/{id}/rewards")
+    public Long getAccountRewards(@PathVariable int id) {
+		System.out.println(service.getRewards(id));
+        return service.getRewards(id);
     }
 
 }

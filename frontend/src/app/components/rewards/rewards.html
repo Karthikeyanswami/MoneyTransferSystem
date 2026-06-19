@@ -6,7 +6,7 @@
     <i class="ti ti-alert-circle" aria-hidden="true"></i> {{ error }}
   </div>
 
-  <ng-container *ngIf="!loading && !error && balance">
+  <ng-container *ngIf="!loading && !error">
 
     <!-- Hero -->
     <div class="rw-hero">
@@ -20,7 +20,7 @@
             transform="rotate(-90 60 60)"/>
         </svg>
         <div class="rw-ring-center">
-          <span class="rw-pts-big">{{ balance.pointsBalance }}</span>
+          <span class="rw-pts-big">{{ rewards }}</span>
           <span class="rw-pts-lbl">points</span>
         </div>
       </div>
@@ -41,7 +41,7 @@
           <div class="rw-progress-fill" [style.width.%]="progressPercent"></div>
         </div>
         <p class="rw-progress-label">
-          {{ balance.pointsBalance }} / {{ currentTier.nextAt ?? '∞' }} pts
+          {{ rewards }} / {{ currentTier.nextAt ?? '∞' }} pts
         </p>
       </div>
     </div>

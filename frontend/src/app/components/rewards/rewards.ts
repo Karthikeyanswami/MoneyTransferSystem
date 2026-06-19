@@ -3,10 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-export interface RewardBalance {
-  accountId: number;
-  pointsBalance: number;
-}
 
 @Component({
   selector: 'app-rewards',
@@ -17,9 +13,9 @@ export interface RewardBalance {
 export class RewardsComponent implements OnInit {
   @Input() accountId!: number;
 
-  private readonly baseUrl = '/api/rewards';
+  private readonly baseUrl = 'http://localhost:8080/api/v1/accounts';
 
-  balance: RewardBalance | null = null;
+  rewards : number = 0;
   loading = true;
   error: string | null = null;
 
@@ -33,18 +29,28 @@ export class RewardsComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+   
     this.loadRewards();
+    
+   
+
+    // this.balance = {accountId: 1, pointsBalance: 29};
+    // this.loading = false;
+
   }
 
   loadRewards(): void {
     this.loading = true;
     this.error = null;
 
-    this.http.get<RewardBalance>(`${this.baseUrl}/${this.accountId}/balance`)
+    this.http.get<any>(`${this.baseUrl}/${this.accountId}/rewards`)
       .subscribe({
         next: (data) => {
-          this.balance = data;
+          console.log(data);
+          this.rewards = data;
+          console.log("rewards : ", this.rewards);
           this.loading = false;
+          console.log(this.loading);
         },
         error: () => {
           this.error = 'Could not load rewards. Please try again.';
@@ -54,20 +60,17 @@ export class RewardsComponent implements OnInit {
   }
 
   get currentTier() {
-    const pts = this.balance?.pointsBalance ?? 0;
-    return this.TIERS.find(t => pts >= t.min && pts <= t.max) ?? this.TIERS[0];
+    return this.TIERS.find(t => this.rewards >= t.min && this.rewards <= t.max) ?? this.TIERS[0];
   }
 
   get progressPercent(): number {
-    const pts = this.balance?.pointsBalance ?? 0;
     const tier = this.currentTier;
     if (!tier.nextAt) return 100;
-    return Math.round(((pts - tier.min) / (tier.nextAt - tier.min)) * 100);
+    return Math.round(((this.rewards - tier.min) / (tier.nextAt - tier.min)) * 100);
   }
 
   get ptsToNextTier(): number {
-    const pts = this.balance?.pointsBalance ?? 0;
-    return this.currentTier.nextAt ? this.currentTier.nextAt - pts : 0;
+    return this.currentTier.nextAt ? this.currentTier.nextAt - this.rewards : 0;
   }
 
   get hintText(): string {
@@ -81,6 +84,6 @@ export class RewardsComponent implements OnInit {
   }
 
   isTierUnlocked(min: number): boolean {
-    return (this.balance?.pointsBalance ?? 0) >= min;
+    return (this.rewards ?? 0) >= min;
   }
 }

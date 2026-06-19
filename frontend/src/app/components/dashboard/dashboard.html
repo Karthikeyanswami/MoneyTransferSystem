@@ -35,7 +35,7 @@
     </div>
 
     <div class="section-label">🎁 Your Rewards</div>
-    <app-rewards [accountId]="account.id"></app-rewards>
+    <app-rewards *ngIf="account.id > 0 " [accountId]="account.id"></app-rewards>
   
     
     <div class="bottom-nav">
