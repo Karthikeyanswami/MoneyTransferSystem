@@ -7,5 +7,6 @@ export interface Transferresponse {
   debitedFrom: number;         
   creditedTo: number;          
   amount: number; 
+  rewardsMessage : string
 
 }

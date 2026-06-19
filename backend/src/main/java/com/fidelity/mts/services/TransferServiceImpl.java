@@ -71,9 +71,9 @@ public class TransferServiceImpl implements TransferService{
 				transferResponse.setCreditedTo(transactionLog.getToAccountId());
 				transferResponse.setStatus(TransactionStatus.SUCCESS);
 				transferResponse.setMessage("Transfer completed");
-
-				updateRewards(transactionLog.getFromAccountId(),transactionLog.getAmount());
-		
+				
+				long pts = updateRewards(transactionLog.getFromAccountId(),transactionLog.getAmount());
+				transferResponse.setRewardsMessage( pts + " Points");
 				return ResponseEntity.status(HttpStatus.OK).body(transferResponse);
 			}
 			
@@ -160,12 +160,12 @@ public class TransferServiceImpl implements TransferService{
 	}
 	
 
-	private void updateRewards(Long accountId, BigDecimal amount) {
+	private long updateRewards(Long accountId, BigDecimal amount) {
 
 		long points = amount.divide(BigDecimal.valueOf(100)).longValue();
 
 		if(points <= 0) {
-			return;
+			return -1;
 		}
 
 		Optional<RewardAccount> rewardOpt = rewardRepo.findById(accountId);
@@ -180,5 +180,7 @@ public class TransferServiceImpl implements TransferService{
 
 			rewardRepo.save(reward);
 		}
+
+		return points;
 	}
 }

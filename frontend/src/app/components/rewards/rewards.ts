@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-rewards',
+  standalone: false,
   templateUrl: './rewards.html',
-  imports: [CommonModule, HttpClientModule], 
   styleUrls: ['./rewards.css']
 })
 export class RewardsComponent implements OnInit {
@@ -15,7 +15,7 @@ export class RewardsComponent implements OnInit {
 
   private readonly baseUrl = 'http://localhost:8080/api/v1/accounts';
 
-  rewards : number = 0;
+  rewards : number = -1;
   loading = true;
   error: string | null = null;
 
@@ -26,21 +26,32 @@ export class RewardsComponent implements OnInit {
     { name: 'Platinum', min: 1000, max: Infinity, next: null,       nextAt: null },
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,  private cd:ChangeDetectorRef) {}
 
   ngOnInit(): void {
-   
-    this.loadRewards();
+  
+    this.http.get<any>(`${this.baseUrl}/${this.accountId}/rewards`)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.rewards = data;
+          this.loading = false;
+          this.cd.detectChanges();
+          console.log("rewards : ", this.rewards);
+          console.log(this.loading);
+        },
+        error: () => {
+          this.error = 'Could not load rewards. Please try again.';
+          this.loading = false;
+        }
+      });
     
-   
-
     // this.balance = {accountId: 1, pointsBalance: 29};
     // this.loading = false;
 
   }
 
   loadRewards(): void {
-    this.loading = true;
     this.error = null;
 
     this.http.get<any>(`${this.baseUrl}/${this.accountId}/rewards`)

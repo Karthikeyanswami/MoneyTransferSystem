@@ -24,15 +24,14 @@ import { RewardsComponent  } from './components/rewards/rewards';
     History,
     Transfer,
     Profile,
+    RewardsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule,
-    RewardsComponent
-    
+    CommonModule
 
   ],
   providers: [
