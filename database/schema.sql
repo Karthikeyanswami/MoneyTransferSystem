@@ -28,3 +28,13 @@ CREATE TABLE IF NOT EXISTS transaction_log (
   KEY idx_from_account (from_account_id),
   KEY idx_to_account (to_account_id)
 );
+
+
+CREATE TABLE IF NOT EXISTS reward_account (
+  account_id     BIGINT NOT NULL,
+  points_balance BIGINT NOT NULL DEFAULT 0,
+  last_updated   DATETIME(6) NOT NULL,
+  version        INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (account_id),
+  CONSTRAINT fk_reward_account FOREIGN KEY (account_id) REFERENCES account(id)
+);
