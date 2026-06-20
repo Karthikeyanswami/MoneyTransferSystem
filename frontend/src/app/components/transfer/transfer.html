@@ -1,0 +1,117 @@
+<div class="tf-page">
+  <p class="tf-title">Transfer Money</p>
+
+  <!-- Modal -->
+  <div class="tf-overlay" *ngIf="showModal">
+    <div class="tf-modal">
+
+      <ng-container *ngIf="modalCase === 'success'">
+        <span class="tf-modal-emoji">✅</span>
+        <p class="tf-modal-title">Transfer Successful</p>
+        <p class="tf-modal-subtitle">Your money is on its way.</p>
+
+        <div class="tf-detail-box">
+          <div class="tf-detail-row">
+            <span class="tf-detail-lbl">Transaction ID</span>
+            <span class="tf-detail-val">{{ modalDetails.transactionId }}</span>
+          </div>
+          <div class="tf-detail-row">
+            <span class="tf-detail-lbl">From</span>
+            <span class="tf-detail-val">{{ modalDetails.debitedFrom }}</span>
+          </div>
+          <div class="tf-detail-row">
+            <span class="tf-detail-lbl">To</span>
+            <span class="tf-detail-val">{{ modalDetails.creditedTo }}</span>
+          </div>
+          <div class="tf-detail-row">
+            <span class="tf-detail-lbl">Amount</span>
+            <span class="tf-detail-val">₹ {{ modalDetails.amount | number:'1.2-2' }}</span>
+          </div>
+          <div class="tf-detail-row">
+            <span class="tf-detail-lbl">Status</span>
+            <span class="tf-detail-val success">SUCCESS</span>
+          </div>
+        </div>
+
+        <div class="tf-reward-strip" *ngIf="modalDetails.rewardsMessage">
+          <span class="tf-reward-icon">⭐</span>
+          <span>{{ modalDetails.rewardsMessage }}</span>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="modalCase === 'failure'">
+        <span class="tf-modal-emoji">❌</span>
+        <p class="tf-modal-title">Transfer Failed</p>
+        <p class="tf-modal-subtitle">Something went wrong. Please try again.</p>
+
+        <div class="tf-fail-box">
+          <div class="tf-fail-row">
+            <span class="tf-fail-lbl">Status</span>
+            <span class="tf-fail-val">FAILED</span>
+          </div>
+          <div class="tf-fail-row">
+            <span class="tf-fail-lbl">Error code</span>
+            <span class="tf-fail-val">{{ modalDetails.errorCode }}</span>
+          </div>
+          <div class="tf-fail-row">
+            <span class="tf-fail-lbl">Message</span>
+            <span class="tf-fail-val">{{ modalDetails.message }}</span>
+          </div>
+        </div>
+      </ng-container>
+
+      <button class="tf-modal-btn"
+        [routerLink]="['/dashboard', transferReq.fromAccountId]">
+        ← Back to Dashboard
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="tf-card">
+
+    <div class="tf-from-box">
+      <div>
+        <div class="tf-from-lbl">From account</div>
+        <div class="tf-from-val">{{ transferReq.fromAccountId }}</div>
+      </div>
+      <span class="tf-bank-emoji">🏦</span>
+    </div>
+
+    <div class="tf-arrow-row">
+      <div class="tf-arrow-line"></div>
+      <div class="tf-arrow-circle">↓</div>
+      <div class="tf-arrow-line"></div>
+    </div>
+
+    <div class="tf-field">
+      <label>To account number</label>
+      <input type="text" [(ngModel)]="transferReq.toAccountId"
+             placeholder="Enter account number"/>
+    </div>
+
+    <div class="tf-field">
+      <label>Amount</label>
+      <div class="tf-rupee-wrap">
+        <span class="tf-rupee-symbol">₹</span>
+        <input type="number" [(ngModel)]="transferReq.amount"
+               placeholder="0.00"/>
+      </div>
+    </div>
+
+    <div class="tf-field">
+      <label>Note (optional)</label>
+      <input type="text" [(ngModel)]="note"
+             placeholder="What's this for?"/>
+    </div>
+
+    <button class="tf-btn-transfer" (click)="transferMoney()">
+      Transfer Now
+    </button>
+    <button class="tf-btn-cancel" (click)="cancelTransaction()">
+      Cancel
+    </button>
+
+  </div>
+</div>

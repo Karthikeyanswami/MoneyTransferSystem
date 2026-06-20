@@ -1,0 +1,61 @@
+<div class="db">
+
+  <div class="db-welcome">
+    <div class="db-welcome-left">
+      <p>Good Morning 👋</p>
+      <h2>{{ account.holderName }}</h2>
+    </div>
+    <div class="db-avatar">{{ account.holderName.charAt(0) }}</div>
+  </div>
+
+  <div class="db-balance">
+    <p class="db-bal-label">Available Balance</p>
+    <p class="db-bal-amount">₹ {{ account.balance | number:'1.2-2' }}</p>
+    <div class="db-bal-footer">
+      <span class="db-acc-num">Account · {{ account.id }}</span>
+      <span class="db-bal-badge">✓ Active</span>
+    </div>
+  </div>
+
+  <div class="db-grid">
+    <div class="db-action" (click)="goTransfer()">
+      <span class="db-action-icon">💸</span>
+      <p>Transfer</p>
+    </div>
+    <div class="db-action" (click)="goHistory()">
+      <span class="db-action-icon">📜</span>
+      <p>History</p>
+    </div>
+    <div class="db-action" (click)="goProfile()">
+      <span class="db-action-icon">👤</span>
+      <p>Profile</p>
+    </div>
+    <div class="db-action logout" (click)="logout()">
+      <span class="db-action-icon">🚪</span>
+      <p>Logout</p>
+    </div>
+  </div>
+
+  <p class="db-section-label">🎁 Your Rewards</p>
+  <div class="db-rewards-wrap">
+    <div class="db-rewards-header">
+      <span class="db-rewards-header-sub">Earn points on every transfer</span>
+    </div>
+    <div class="db-rewards-body">
+      <app-rewards *ngIf="account.id > 0" [accountId]="account.id"></app-rewards>
+    </div>
+  </div>
+
+  <div class="db-nav">
+    <div class="db-nav-item active">
+      <span>🏠</span> Home
+    </div>
+    <div class="db-nav-item" (click)="goTransfer()">
+      <span>💸</span> Transfer
+    </div>
+    <div class="db-nav-item" (click)="goHistory()">
+      <span>📜</span> History
+    </div>
+  </div>
+
+</div>

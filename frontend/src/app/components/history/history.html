@@ -1,0 +1,106 @@
+<div class="page">
+
+<div class="app-bar">
+<button class="nav-btn" aria-label="Menu">
+<span class="nav-icon"></span>
+</button>
+<h1 class="title">Transaction History</h1>
+</div>
+
+<div class="filters">
+<button
+      class="pill"
+      [class.active]="activeTab === 'all'"
+      (click)="activeTab = 'all'"
+>
+      All
+</button>
+<button
+      class="pill"
+      [class.active]="activeTab === 'sent'"
+      (click)="activeTab = 'sent'"
+>
+      Sent
+</button>
+<button
+      class="pill"
+      [class.active]="activeTab === 'received'"
+      (click)="activeTab = 'received'"
+>
+      Received
+</button>
+</div>
+ 
+
+<div
+    class="history-card"
+    *ngFor="let tx of filteredTransactions"
+    data-testid="tx-row"
+>
+<div class="left">
+
+<div
+        class="dir-circle"
+        [class.sent]="isSent(tx)"
+        [class.received]="isReceived(tx)"
+        aria-hidden="true"
+>
+<svg
+          *ngIf="isSent(tx)"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          class="arrow"
+          focusable="false"
+>
+<path d="M12 5l-5 5h3v6h4v-6h3z" fill="currentColor" />
+</svg>
+<svg
+          *ngIf="isReceived(tx)"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="18"
+          height="18"
+          class="arrow"
+          focusable="false"
+>
+<path d="M12 19l5-5h-3v-6h-4v6H7z" fill="currentColor" />
+</svg>
+</div>
+ 
+      <div class="text-block">
+<div class="name">
+          {{
+            isSent(tx)
+              ? 'Transfer to ' + (tx.toAccountId ?? tx.to_account_id)
+              : 'Received from ' + (tx.fromAccountId ?? tx.from_account_id)
+          }}
+</div>
+<div class="meta">
+          {{ tx.createdAtMs | date: 'MMM dd, yyyy · hh:mm a' }}
+</div>
+</div>
+</div>
+ 
+    <div class="right">
+<div [class]="amountClass(tx)">
+        {{ amountSign(tx) }}
+        {{ (tx.amount ?? 0) | currency : 'INR' : 'symbol' : '1.2-2' }}
+</div>
+ 
+      <span [class]="statusClass(tx)">
+        Success
+</span>
+
+      <span class="badge reward" *ngIf=" isSent(tx) "> + {{tx.rewardsEarned }} pts </span>
+</div>
+</div>
+ 
+
+<nav class="bottom-nav" aria-label="Primary">
+<div class="nav-item" (click)="goHome()">🏠 Home</div>
+<div class="nav-item" (click)="goTransfer()">💸 Transfer</div>
+<div class="nav-item active">📜 History</div>
+</nav>
+</div>

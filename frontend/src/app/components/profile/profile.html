@@ -1,0 +1,52 @@
+
+<section class="account-container">
+  <h2 class="account-title">Account Details</h2>
+
+  <div class="account-form">
+    <div class="form-row">
+      <label for="id">ID</label>
+      <div class="value" id="id">{{ account.id }}</div>
+    </div>
+
+    <div class="form-row">
+      <label for="holderName">Holder Name</label>
+      <div class="value" id="holderName">{{ account.holderName }}</div>
+    </div>
+
+    <div class="form-row">
+      <label for="balance">Balance</label>
+      <div class="value" id="balance">
+        {{ account.balance | number:'1.0-2' }}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label for="status">Status</label>
+      <div class="value status" id="status" [class.active]="account.status === 'ACTIVE'" [class.inactive]="account.status !== 'ACTIVE'">
+        {{ account.status }}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label for="version">Version</label>
+      <div class="value" id="version">{{ account.version }}</div>
+    </div>
+
+    <div class="form-row">
+      <label for="lastUpdated">Last Updated</label>
+      <div class="value" id="lastUpdated">
+        {{ account.lastUpdated | date:'medium':'UTC' }}
+      </div>
+    </div>
+    <br>
+    <div class="modal-actions">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [routerLink]="['/dashboard', account.id]"
+      >
+        ← Back to Dashboard
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,141 @@
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes badge-pop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  70%  { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.rv-root { font-family: var(--font-sans, sans-serif); padding: 1rem 0; }
+
+.rv-loading { color: var(--color-text-secondary); font-size: 14px; padding: 2rem 0; text-align: center; }
+.rv-error {
+  font-size: 14px; color: var(--color-text-danger);
+  background: var(--color-background-danger);
+  border-radius: var(--border-radius-md);
+  padding: 10px 14px; display: flex; align-items: center; gap: 8px;
+}
+
+.rv-hero {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  animation: slide-in 0.4s ease both;
+}
+
+.rv-ring-wrap {
+  position: relative; width: 130px; height: 130px; flex-shrink: 0;
+  animation: float 3s ease-in-out infinite;
+}
+.rv-ring-wrap svg { width: 130px; height: 130px; }
+.rv-ring-wrap circle { transition: stroke-dashoffset 1.2s cubic-bezier(.22,.68,0,1.2); }
+
+.rv-ring-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.rv-pts-big { font-size: 30px; font-weight: 500; color: #534AB7; line-height: 1; }
+.rv-pts-lbl { font-size: 11px; color: var(--color-text-secondary); margin-top: 3px; }
+
+.rv-right { animation: slide-in 0.5s ease 0.1s both; }
+
+.rv-tier-name {
+  font-size: 20px; font-weight: 500; margin: 0 0 3px;
+  background: linear-gradient(90deg, #534AB7, #7F77DD, #EF9F27);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+.rv-tier-sub { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 12px; }
+
+.rv-bar {
+  height: 8px; background: var(--color-background-secondary);
+  border-radius: 99px; overflow: hidden; margin-bottom: 5px;
+}
+.rv-bar-fill {
+  height: 100%; border-radius: 99px;
+  background: linear-gradient(90deg, #7F77DD, #EF9F27);
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+  transition: width 1.2s cubic-bezier(.22,.68,0,1.2);
+}
+.rv-bar-label { font-size: 12px; color: var(--color-text-secondary); }
+
+.rv-tiers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.rv-tier-card {
+  border-radius: var(--border-radius-md);
+  padding: 12px 8px 10px;
+  border: 1px solid transparent;
+  text-align: center;
+  transition: transform 0.2s ease;
+  cursor: default;
+}
+.rv-tier-card:hover { transform: translateY(-2px); }
+.rv-tier-card.active .rv-tier-icon { animation: float 2s ease-in-out infinite; }
+.rv-tier-card.locked { opacity: 0.4; filter: grayscale(0.4); }
+
+.rv-tier-icon { font-size: 24px; display: block; margin-bottom: 5px; }
+.rv-tier-card-name { font-size: 12px; font-weight: 500; display: block; }
+.rv-tier-card-pts  { font-size: 11px; display: block; margin-top: 2px; }
+
+/* Per-tier colours */
+.rv-tier-card.bronze   { background: #FAEEDA; border-color: #EF9F27; animation: badge-pop 0.4s ease 0.2s both; }
+.rv-tier-card.bronze .rv-tier-card-name { color: #412402; }
+.rv-tier-card.bronze .rv-tier-card-pts  { color: #854F0B; }
+
+.rv-tier-card.silver   { background: #F1EFE8; border-color: #B4B2A9; animation: badge-pop 0.4s ease 0.3s both; }
+.rv-tier-card.silver .rv-tier-card-name { color: #2C2C2A; }
+.rv-tier-card.silver .rv-tier-card-pts  { color: #5F5E5A; }
+
+.rv-tier-card.gold     { background: #FAEEDA; border-color: #BA7517; animation: badge-pop 0.4s ease 0.4s both; }
+.rv-tier-card.gold .rv-tier-card-name { color: #412402; }
+.rv-tier-card.gold .rv-tier-card-pts  { color: #633806; }
+
+.rv-tier-card.platinum { background: #EEEDFE; border-color: #7F77DD; animation: badge-pop 0.4s ease 0.5s both; }
+.rv-tier-card.platinum .rv-tier-card-name { color: #26215C; }
+.rv-tier-card.platinum .rv-tier-card-pts  { color: #3C3489; }
+
+.rv-tier-card.active.bronze   { border-width: 2px; border-color: #BA7517; }
+.rv-tier-card.active.silver   { border-width: 2px; border-color: #888780; }
+.rv-tier-card.active.gold     { border-width: 2px; border-color: #854F0B; }
+.rv-tier-card.active.platinum { border-width: 2px; border-color: #534AB7; }
+
+.rv-hint {
+  background: #EEEDFE;
+  border: 0.5px solid #AFA9EC;
+  border-radius: var(--border-radius-md);
+  padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+  animation: slide-in 0.5s ease 0.3s both;
+}
+.rv-hint i    { font-size: 20px; color: #534AB7; animation: pulse-glow 2s ease-in-out infinite; }
+.rv-hint span { font-size: 13px; color: #3C3489; }
