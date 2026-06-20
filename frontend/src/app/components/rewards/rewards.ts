@@ -20,11 +20,11 @@ export class RewardsComponent implements OnInit {
   error: string | null = null;
 
   readonly TIERS = [
-    { name: 'Bronze',   min: 0,    max: 99,      next: 'Silver',   nextAt: 100  },
-    { name: 'Silver',   min: 100,  max: 499,     next: 'Gold',     nextAt: 500  },
-    { name: 'Gold',     min: 500,  max: 999,     next: 'Platinum', nextAt: 1000 },
-    { name: 'Platinum', min: 1000, max: Infinity, next: null,       nextAt: null },
-  ];
+  { name: 'Bronze',   min: 0,    max: 99,      next: 'Silver',   nextAt: 100,  cssClass: 'bronze',   icon: '🥉' },
+  { name: 'Silver',   min: 100,  max: 499,     next: 'Gold',     nextAt: 500,  cssClass: 'silver',   icon: '🥈' },
+  { name: 'Gold',     min: 500,  max: 999,     next: 'Platinum', nextAt: 1000, cssClass: 'gold',     icon: '🥇' },
+  { name: 'Platinum', min: 1000, max: Infinity, next: null,       nextAt: null, cssClass: 'platinum', icon: '💎' },
+];
 
   constructor(private http: HttpClient,  private cd:ChangeDetectorRef) {}
 

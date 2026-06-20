@@ -1,63 +1,65 @@
-<div class="rw-root">
+<div class="rv-root">
 
-  <!--<div *ngIf="loading" class="rw-loading">Loading rewards…</div>
+  <div *ngIf="loading" class="rv-loading">Loading rewards…</div>
 
-  <div *ngIf="error" class="rw-error">
+  <div *ngIf="error" class="rv-error">
     <i class="ti ti-alert-circle" aria-hidden="true"></i> {{ error }}
-  </div> -->
+  </div>
 
-  <ng-container *ngIf="!loading">
+  <ng-container *ngIf="!loading && !error && rewards">
 
-    <!-- Hero -->
-    <div class="rw-hero">
-      <div class="rw-ring-wrap" aria-hidden="true">
-        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="60" cy="60" r="50" fill="none" stroke="#EEEDFE" stroke-width="10"/>
-          <circle cx="60" cy="60" r="50" fill="none" stroke="#7F77DD" stroke-width="10"
+    <div class="rv-hero">
+      <div class="rv-ring-wrap" aria-hidden="true">
+        <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#7F77DD"/>
+              <stop offset="100%" stop-color="#EF9F27"/>
+            </linearGradient>
+          </defs>
+          <circle cx="65" cy="65" r="54" fill="none" stroke="#EEEDFE" stroke-width="11"/>
+          <circle cx="65" cy="65" r="54" fill="none" stroke="url(#ringGrad)" stroke-width="11"
             stroke-linecap="round"
-            [attr.stroke-dasharray]="314"
-            [attr.stroke-dashoffset]="314 - (314 * progressPercent / 100)"
-            transform="rotate(-90 60 60)"/>
+            [attr.stroke-dasharray]="339"
+            [attr.stroke-dashoffset]="339 - (339 * progressPercent / 100)"
+            transform="rotate(-90 65 65)"/>
         </svg>
-        <div class="rw-ring-center">
-          <span class="rw-pts-big">{{ rewards }}</span>
-          <span class="rw-pts-lbl">points</span>
+        <div class="rv-ring-center">
+          <span class="rv-pts-big">{{ rewards }}</span>
+          <span class="rv-pts-lbl">points</span>
         </div>
       </div>
 
-      <div>
-        <p class="rw-tier-name">{{ currentTier.name }}</p>
-        <p class="rw-tier-sub">
+      <div class="rv-right">
+        <p class="rv-tier-name">{{ currentTier.name }}</p>
+        <p class="rv-tier-sub">
           <ng-container *ngIf="currentTier.next; else maxTier">
             {{ ptsToNextTier }} pts to {{ currentTier.next }}
           </ng-container>
           <ng-template #maxTier>Maximum tier reached</ng-template>
         </p>
-        <div class="rw-progress-bar"
-             role="progressbar"
+        <div class="rv-bar" role="progressbar"
              [attr.aria-valuenow]="progressPercent"
-             aria-valuemin="0"
-             aria-valuemax="100">
-          <div class="rw-progress-fill" [style.width.%]="progressPercent"></div>
+             aria-valuemin="0" aria-valuemax="100">
+          <div class="rv-bar-fill" [style.width.%]="progressPercent"></div>
         </div>
-        <p class="rw-progress-label">
+        <p class="rv-bar-label">
           {{ rewards }} / {{ currentTier.nextAt ?? '∞' }} pts
         </p>
       </div>
     </div>
 
-    <!-- Tier badges -->
-    <div class="rw-tier-badges">
-      <span *ngFor="let t of TIERS"
-        class="rw-badge"
-        [class.active]="isTierActive(t.name)"
-        [class.unlocked]="isTierUnlocked(t.min) && !isTierActive(t.name)">
-        {{ t.name }} · {{ t.min | number }}
-      </span>
+    <div class="rv-tiers">
+      <div *ngFor="let t of TIERS"
+        class="rv-tier-card"
+        [ngClass]="[t.cssClass, isTierActive(t.name) ? 'active' : (isTierUnlocked(t.min) ? 'unlocked' : 'locked')]">
+        <span class="rv-tier-icon">{{ t.icon }}</span>
+        <span class="rv-tier-card-name">{{ t.name }}</span>
+        <span class="rv-tier-card-pts">{{ t.min === 0 ? '0' : (t.min | number) }} pts</span>
+      </div>
     </div>
 
-    <!-- Hint -->
-    <div class="rw-hint">
+    <div class="rv-hint">
       <i class="ti ti-bulb" aria-hidden="true"></i>
       <span>{{ hintText }}</span>
     </div>
