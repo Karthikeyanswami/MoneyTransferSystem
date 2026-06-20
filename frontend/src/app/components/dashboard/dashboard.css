@@ -5,7 +5,7 @@
   margin: auto;
   padding: 20px;
   font-family: Arial, sans-serif;
-  background: #f4f6fb;
+  background: white;
   min-height: 100vh;
 }
 
@@ -79,14 +79,15 @@
   padding: 18px 14px;
   text-align: center;
   cursor: pointer;
-  border: 1px solid #e8eaf0;
+  border: 1px solid black;
   transition: transform 0.15s, box-shadow 0.15s;
+
 }
 .db-action:hover  { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
 .db-action:active { transform: scale(0.97); }
 .db-action-icon { font-size: 26px; display: block; margin-bottom: 8px; }
 .db-action p { font-size: 13px; font-weight: 600; color: #374151; }
-.db-action.logout { background: #fff5f5; border-color: #fecaca; }
+.db-action.logout { background: #fff5f5; border-color: 1px solid red; }
 .db-action.logout p { color: #dc2626; }
 
 /* Section label */
@@ -119,3 +120,4 @@
 }
 .db-nav-item span { font-size: 20px; }
 .db-nav-item.active { color: #534AB7; font-weight: 600; }
+

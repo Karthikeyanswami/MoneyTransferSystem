@@ -5,7 +5,7 @@
       <p>Good Morning 👋</p>
       <h2>{{ account.holderName }}</h2>
     </div>
-    <div class="db-avatar">{{ account.holderName?.charAt(0) }}</div>
+    <div class="db-avatar">{{ account.holderName.charAt(0) }}</div>
   </div>
 
   <div class="db-balance">
@@ -37,7 +37,7 @@
   </div>
 
   <p class="db-section-label">🎁 Your Rewards</p>
-  <app-rewards *ngIf="account.id > 0" [accountId]="account.id"></app-rewards>
+  <app-rewards *ngIf="account.id > 0" [accountId]="account.id"></app-rewards> 
 
   <div class="db-nav">
     <div class="db-nav-item active">
