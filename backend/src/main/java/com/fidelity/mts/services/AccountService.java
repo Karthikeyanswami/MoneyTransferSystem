@@ -13,6 +13,7 @@ public interface AccountService {
 	Account getAccount(int id);
 	BigDecimal getBalance(int id);
 	ResponseEntity<?> getTransactions(int id);
+	Long getRewards(int id);
 	
 	
 	

@@ -21,7 +21,11 @@ import com.fidelity.mts.exceptions.AccountNotFoundException;
 import com.fidelity.mts.exceptions.DuplicateTransferException;
 import com.fidelity.mts.exceptions.InsufficientBalanceException;
 import com.fidelity.mts.repo.AccountRepository;
+import com.fidelity.mts.repo.RewardAccountRepository;
 import com.fidelity.mts.repo.TransactionLogRepository;
+import com.fidelity.mts.entity.RewardAccount;
+import java.time.LocalDateTime;
+
 
 @Service
 public class TransferServiceImpl implements TransferService{
@@ -31,6 +35,7 @@ public class TransferServiceImpl implements TransferService{
 	String errorCode;
 	@Autowired TransactionLogRepository trepo;
 	@Autowired AccountRepository repo;
+	@Autowired RewardAccountRepository rewardRepo;
 	
 	@Override
 	public ResponseEntity<?> transfer(TransferRequest tr) {
@@ -66,7 +71,9 @@ public class TransferServiceImpl implements TransferService{
 				transferResponse.setCreditedTo(transactionLog.getToAccountId());
 				transferResponse.setStatus(TransactionStatus.SUCCESS);
 				transferResponse.setMessage("Transfer completed");
-		
+				
+				long pts = updateRewards(transactionLog.getFromAccountId(),transactionLog.getAmount());
+				transferResponse.setRewardsMessage( pts + " Points");
 				return ResponseEntity.status(HttpStatus.OK).body(transferResponse);
 			}
 			
@@ -152,4 +159,28 @@ public class TransferServiceImpl implements TransferService{
 
 	}
 	
+
+	private long updateRewards(Long accountId, BigDecimal amount) {
+
+		long points = amount.divide(BigDecimal.valueOf(100)).longValue();
+
+		if(points <= 0) {
+			return -1;
+		}
+
+		Optional<RewardAccount> rewardOpt = rewardRepo.findById(accountId);
+
+		if(rewardOpt.isPresent()) {
+
+			RewardAccount reward = rewardOpt.get();
+
+			reward.setPointsBalance(
+					reward.getPointsBalance() + points);
+
+
+			rewardRepo.save(reward);
+		}
+
+		return points;
+	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fidelity.mts.entity.Account;
+import com.fidelity.mts.entity.RewardAccount;
 import com.fidelity.mts.services.AccountService;
 
 @RestController
@@ -46,5 +47,11 @@ public class AccountController {
 		System.out.println( service.getTransactions(id));
 		return service.getTransactions(id);
 	}
+
+	@GetMapping("/{id}/rewards")
+    public Long getAccountRewards(@PathVariable int id) {
+		System.out.println(service.getRewards(id));
+        return service.getRewards(id);
+    }
 
 }

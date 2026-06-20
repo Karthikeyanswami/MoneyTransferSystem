@@ -12,6 +12,7 @@ public class TransferResponse {
     private Long debitedFrom;
     private Long creditedTo;
     private BigDecimal amount;
+	private String rewardsMessage;
 
     
 
@@ -85,6 +86,15 @@ public class TransferResponse {
 		this.amount = amount;
 	}
 
+	public String getRewardsMessage() {
+        return rewardsMessage;
+    }
+
+    // Setter
+    public void setRewardsMessage(String rewardsMessage) {
+        this.rewardsMessage = rewardsMessage;
+    }
+
 
 
 	@Override
@@ -96,6 +106,7 @@ public class TransferResponse {
                 ", debitedFrom=" + debitedFrom +
                 ", creditedTo=" + creditedTo +
                 ", amount=" + amount +
+				", rewards=" + rewardsMessage +
                 '}';
     }
 }

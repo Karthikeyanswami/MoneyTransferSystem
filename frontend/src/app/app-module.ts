@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { Transfer } from './components/transfer/transfer';
 import { Profile } from './components/profile/profile';
 import { HttpInterceptorService } from './core/services/http-interceptor-service';
+import { RewardsComponent  } from './components/rewards/rewards';
 
 
 
@@ -22,7 +23,8 @@ import { HttpInterceptorService } from './core/services/http-interceptor-service
     Dashboard,
     History,
     Transfer,
-    Profile
+    Profile,
+    RewardsComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,6 @@ import { HttpInterceptorService } from './core/services/http-interceptor-service
     FormsModule,
     ReactiveFormsModule,
     CommonModule
-    
 
   ],
   providers: [

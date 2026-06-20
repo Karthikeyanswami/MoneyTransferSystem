@@ -12,6 +12,8 @@ com\fidelity\mts\exceptions\DuplicateTransferException.class
 com\fidelity\mts\dto\TransferResponse.class
 com\fidelity\mts\controller\TransferController.class
 com\fidelity\mts\services\AccountService.class
+com\fidelity\mts\repo\RewardAccountRepository.class
+com\fidelity\mts\entity\RewardAccount.class
 com\fidelity\mts\entity\TransactionLog.class
 com\fidelity\mts\controller\SecurityController.class
 com\fidelity\mts\controller\AccountController.class

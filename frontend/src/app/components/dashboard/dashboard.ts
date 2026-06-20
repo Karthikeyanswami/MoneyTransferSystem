@@ -45,7 +45,7 @@ export class Dashboard {
   ngOnInit() : void{
     this.isLoggedin = this.authService.isUserLoggedin();
     if(this.isLoggedin){
-         this.userName = Number(this.route.snapshot.paramMap.get('username'));
+        this.userName = Number(this.route.snapshot.paramMap.get('username'));
         this.accountService.getAccount(this.userName).subscribe({
           next: data => {this.account = data; console.log(this.account);this.cd.detectChanges();},
           error: err => console.error(err),
