@@ -1,63 +1,103 @@
-<div class="transfer-container">
-  <h1 class="page-title">Transfer Money</h1>
- 
-  <div *ngIf="showModal" class="modal-overlay">
-  <div class="modal-content">
-    <h2>{{modalTitle}}</h2>
-    <p>{{modalMessage}}</p>
-    <div *ngIf="modalCase === 'success'" class="modal-details-success">
-      <p><strong>Transaction ID:</strong> {{modalDetails.transactionId}}</p>
-      <p><strong>Status:</strong> {{modalDetails.status}}</p>
-      <p><strong>From Account:</strong> {{modalDetails.debitedFrom}}</p>
-      <p><strong>To Account:</strong> {{modalDetails.creditedTo}}</p>
-      <p><strong>Amount:</strong> {{modalDetails.amount}}</p>
-       <p><strong>Rewards Earned:</strong> {{modalDetails.rewardsMessage}}</p>
-    </div>
-    <div *ngIf="modalCase === 'failure'" class="modal-details-fail">
-      <p><strong>Status:</strong> FAILED</p>
-      <p><strong>Error Code</strong> {{modalDetails.errorCode}}</p>
-      <p><strong>Message:</strong> {{modalDetails.message}}</p>
-    </div>
+<div class="tf-container">
+  <p class="tf-title">Transfer Money</p>
 
-    <br>
-    <br>
-<div class="modal-actions">
-      <button
-        type="button"
-        class="btn btn-primary"
-        [routerLink]="['/dashboard', transferReq.fromAccountId]"
-      >
+  <!-- Success / Failure Modal -->
+  <div *ngIf="showModal" class="tf-overlay">
+    <div class="tf-modal">
+
+      <ng-container *ngIf="modalCase === 'success'">
+        <span class="tf-modal-icon">✅</span>
+        <p class="tf-modal-title">Transfer successful</p>
+        <p class="tf-modal-sub">Your money is on its way.</p>
+
+        <div class="tf-modal-rows">
+          <div class="tf-modal-row">
+            <span class="tf-modal-row-lbl">Transaction ID</span>
+            <span class="tf-modal-row-val">{{ modalDetails.transactionId }}</span>
+          </div>
+          <div class="tf-modal-row">
+            <span class="tf-modal-row-lbl">From</span>
+            <span class="tf-modal-row-val">{{ modalDetails.debitedFrom }}</span>
+          </div>
+          <div class="tf-modal-row">
+            <span class="tf-modal-row-lbl">To</span>
+            <span class="tf-modal-row-val">{{ modalDetails.creditedTo }}</span>
+          </div>
+          <div class="tf-modal-row">
+            <span class="tf-modal-row-lbl">Amount</span>
+            <span class="tf-modal-row-val">₹ {{ modalDetails.amount | number:'1.2-2' }}</span>
+          </div>
+          <div class="tf-modal-row">
+            <span class="tf-modal-row-lbl">Status</span>
+            <span class="tf-modal-row-val tf-success-text">SUCCESS</span>
+          </div>
+        </div>
+
+        <div class="tf-reward-badge" *ngIf="modalDetails.rewardsMessage">
+          <i class="ti ti-star" aria-hidden="true"></i>
+          <span>{{ modalDetails.rewardsMessage }}</span>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="modalCase === 'failure'">
+        <span class="tf-modal-icon">❌</span>
+        <p class="tf-modal-title">Transfer failed</p>
+        <p class="tf-modal-sub">Something went wrong. Please try again.</p>
+
+        <div class="tf-modal-fail-rows">
+          <div class="tf-modal-fail-row">
+            <span>Status</span><span>FAILED</span>
+          </div>
+          <div class="tf-modal-fail-row">
+            <span>Error code</span><span>{{ modalDetails.errorCode }}</span>
+          </div>
+          <div class="tf-modal-fail-row">
+            <span>Message</span><span>{{ modalDetails.message }}</span>
+          </div>
+        </div>
+      </ng-container>
+
+      <button class="tf-modal-back" [routerLink]="['/dashboard', transferReq.fromAccountId]">
         ← Back to Dashboard
       </button>
     </div>
-
-   
   </div>
-</div>
 
-  <div class="transfer-card">
-    <div class="from">
-      <span class="label">From</span>
-      <span class="value">{{ transferReq.fromAccountId }}</span>
+  <!-- Transfer Form -->
+  <div class="tf-card">
+    <div class="tf-from-box">
+      <div>
+        <div class="tf-from-lbl">From account</div>
+        <div class="tf-from-val">{{ transferReq.fromAccountId }}</div>
+      </div>
+      <i class="ti ti-building-bank" aria-hidden="true"></i>
     </div>
- 
-    <label>To Account</label>
-    <input type="text" [(ngModel)]="transferReq.toAccountId" />
- 
-    <label>Amount</label>
-    <input type="number" [(ngModel)]="transferReq.amount" />
- 
-    <label>Note</label>
-    <input type="text" [(ngModel)]="note" />
- 
-    <button class="primary" (click)="transferMoney()">
-      Transfer Now
-    </button>
 
-    <button class="cancel" (click)="cancelTransaction()">
-      Cancel
-    </button>
+    <div class="tf-divider">
+      <div class="tf-divider-line"></div>
+      <div class="tf-divider-icon"><i class="ti ti-arrow-down" aria-hidden="true"></i></div>
+      <div class="tf-divider-line"></div>
+    </div>
+
+    <div class="tf-field">
+      <label>To account number</label>
+      <input type="text" [(ngModel)]="transferReq.toAccountId" placeholder="Enter account number"/>
+    </div>
+
+    <div class="tf-field">
+      <label>Amount</label>
+      <div class="tf-amount-wrap">
+        <span class="tf-rs">₹</span>
+        <input type="number" [(ngModel)]="transferReq.amount" placeholder="0.00"/>
+      </div>
+    </div>
+
+    <div class="tf-field">
+      <label>Note (optional)</label>
+      <input type="text" [(ngModel)]="note" placeholder="What's this for?"/>
+    </div>
+
+    <button class="tf-btn-primary" (click)="transferMoney()">Transfer Now</button>
+    <button class="tf-btn-cancel" (click)="cancelTransaction()">Cancel</button>
   </div>
 </div>
- 
-
