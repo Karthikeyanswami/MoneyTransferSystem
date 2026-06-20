@@ -68,6 +68,8 @@ public class TransactionLog {
 	)
 	private Account ToAccount;
 	
+    @Column(name="rewards_earned", nullable=false)
+    private long rewardsEarned = 0L;
 
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
@@ -85,6 +87,15 @@ public class TransactionLog {
     public void setIdempotencyKey(String idempotencyKey) { this.idempotencyKey = idempotencyKey; }
     public Instant getCreatedOn() { return createdOn; }
     public void setCreatedOn(Instant createdOn) { this.createdOn = createdOn; }
+
+
+    public long getRewardsEarned() {
+        return rewardsEarned;
+    }
+
+    public void setRewardsEarned(long rewardsEarned) {
+        this.rewardsEarned = rewardsEarned;
+    }
 
     @Override
     public String toString() {

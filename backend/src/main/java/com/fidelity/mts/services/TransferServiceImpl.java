@@ -60,7 +60,7 @@ public class TransferServiceImpl implements TransferService{
 		else {
 
 			transactionLog.setStatus(TransactionStatus.SUCCESS);
-			trepo.save(transactionLog);
+			
 			
 			if (executeTransfer());
 			{
@@ -74,6 +74,8 @@ public class TransferServiceImpl implements TransferService{
 				
 				long pts = updateRewards(transactionLog.getFromAccountId(),transactionLog.getAmount());
 				transferResponse.setRewardsMessage( pts + " Points");
+				transactionLog.setRewardsEarned(pts>0 ? pts:0L);
+				trepo.save(transactionLog);
 				return ResponseEntity.status(HttpStatus.OK).body(transferResponse);
 			}
 			
