@@ -92,6 +92,8 @@
       <span [class]="statusClass(tx)">
         Success
 </span>
+
+      <span class="badge reward" *ngIf=" isSent(tx) "> + {{tx.rewardsEarned }} pts </span>
 </div>
 </div>
  

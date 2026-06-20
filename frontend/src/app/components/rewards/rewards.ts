@@ -15,7 +15,7 @@ export class RewardsComponent implements OnInit {
 
   private readonly baseUrl = 'http://localhost:8080/api/v1/accounts';
 
-  rewards : number = -1;
+  rewards : number = 0;
   loading = true;
   error: string | null = null;
 

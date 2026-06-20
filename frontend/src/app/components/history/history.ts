@@ -39,6 +39,7 @@ export class History {
     this.accountService.getTransactions(this.userName).subscribe({
       next: (data: any) => {
         const rows: any[] = Array.isArray(data) ? data : (data?.items ?? []);
+        console.log(data);
         this.transactions = rows.map((t: any) => {
           const createdOn =
             t?.created_at ??
@@ -77,6 +78,7 @@ export class History {
             toAccountId: Number(toId),
             createdAtMs: Number.isFinite(createdAtMs) ? createdAtMs : 0,
             statusText,
+            rewardsEarned : Number(t?.rewardsEarned),
           };
         });
  

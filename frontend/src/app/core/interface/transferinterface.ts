@@ -10,4 +10,5 @@ export interface Transaction {
   failureReason?: string | null;
   idempotencyKey: string;
   createdOn: string;
+  rewardsEarned? : number;
 }

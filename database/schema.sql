@@ -38,3 +38,5 @@ CREATE TABLE IF NOT EXISTS reward_account (
   PRIMARY KEY (account_id),
   CONSTRAINT fk_reward_account FOREIGN KEY (account_id) REFERENCES account(id)
 );
+
+alter table transaction_log add column rewards_earned bigint not null default 0;
