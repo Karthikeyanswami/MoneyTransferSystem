@@ -7,24 +7,23 @@
   to   { opacity: 1; }
 }
 
-.tf-container {
+.tf-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 0;
+  padding: 2rem 1rem;
 }
 
 .tf-title {
   font-size: 22px;
   font-weight: 500;
   color: var(--color-text-primary);
-  margin: 0 0 1.5rem;
-  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .tf-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 400px;
   background: var(--color-background-primary);
   border: 0.5px solid var(--color-border-tertiary);
   border-radius: 12px;
@@ -40,73 +39,110 @@
   align-items: center;
   margin-bottom: 1.25rem;
 }
-.tf-from-box i { font-size: 20px; color: #534AB7; }
-.tf-from-lbl { font-size: 12px; color: var(--color-text-secondary); }
-.tf-from-val { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.tf-from-lbl  { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 2px; }
+.tf-from-val  { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.tf-bank-icon { font-size: 22px; color: #534AB7; }
 
-.tf-divider {
+.tf-arrow-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 1.25rem;
+  margin-bottom: 1.25rem;
 }
-.tf-divider-line { flex: 1; height: 0.5px; background: var(--color-border-tertiary); }
-.tf-divider-icon {
-  width: 28px; height: 28px; border-radius: 50%;
+.tf-arrow-line {
+  flex: 1;
+  height: 0.5px;
+  background: var(--color-border-tertiary);
+}
+.tf-arrow-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   background: #EEEDFE;
-  border: 0.5px solid #AFA9EC;
-  display: flex; align-items: center; justify-content: center;
+  border: 1px solid #AFA9EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
-.tf-divider-icon i { font-size: 14px; color: #534AB7; }
+.tf-arrow-circle i { font-size: 14px; color: #534AB7; }
 
 .tf-field { margin-bottom: 1rem; }
-.tf-field label { font-size: 13px; color: var(--color-text-secondary); display: block; margin-bottom: 5px; }
+.tf-field label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-bottom: 5px;
+}
 .tf-field input {
-  width: 100%; box-sizing: border-box;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   padding: 10px 12px;
   border-radius: 8px;
-  border: 0.5px solid var(--color-border-tertiary);
+  border: 1px solid var(--color-border-tertiary);
   background: var(--color-background-primary);
   color: var(--color-text-primary);
   font-size: 14px;
   outline: none;
   transition: border-color 0.2s;
 }
-.tf-field input:focus { border-color: #7F77DD; border-width: 1px; }
+.tf-field input:focus { border-color: #7F77DD; }
 
-.tf-amount-wrap { position: relative; }
-.tf-rs { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--color-text-secondary); }
-.tf-amount-wrap input { padding-left: 28px; }
-
-.tf-btn-primary {
-  width: 100%; padding: 12px;
-  border-radius: 8px; border: none;
-  background: #534AB7; color: #fff;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer; margin-top: 0.5rem;
-  transition: background 0.2s, transform 0.1s;
+.tf-rupee-wrap { position: relative; }
+.tf-rupee-symbol {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
 }
-.tf-btn-primary:hover  { background: #3C3489; }
-.tf-btn-primary:active { transform: scale(0.98); }
+.tf-rupee-wrap input { padding-left: 26px; }
+
+.tf-btn-transfer {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 1.25rem;
+  border-radius: 8px;
+  border: none;
+  background: #534AB7;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.tf-btn-transfer:hover  { background: #3C3489; }
+.tf-btn-transfer:active { transform: scale(0.98); }
 
 .tf-btn-cancel {
-  width: 100%; padding: 11px;
+  display: block;
+  width: 100%;
+  padding: 11px;
+  margin-top: 8px;
   border-radius: 8px;
-  border: 0.5px solid var(--color-border-secondary);
+  border: 1px solid var(--color-border-secondary);
   background: transparent;
   color: var(--color-text-secondary);
-  font-size: 14px; font-weight: 500;
-  cursor: pointer; margin-top: 8px;
-  transition: background 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
 }
 .tf-btn-cancel:hover { background: var(--color-background-secondary); }
 
-/* Modal */
+/* ── Overlay ── */
 .tf-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.4);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 1000;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
   animation: fadeIn 0.2s ease;
 }
 
@@ -114,68 +150,81 @@
   background: var(--color-background-primary);
   border: 0.5px solid var(--color-border-tertiary);
   border-radius: 12px;
-  width: 320px; padding: 1.5rem;
-  animation: slideIn 0.3s ease;
+  width: 90%;
+  max-width: 340px;
+  padding: 1.5rem;
   text-align: center;
+  animation: slideIn 0.25s ease;
 }
 
-.tf-modal-icon  { font-size: 40px; display: block; margin-bottom: 0.75rem; }
-.tf-modal-title { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
-.tf-modal-sub   { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 1.25rem; }
+.tf-modal-emoji    { font-size: 38px; display: block; margin-bottom: 10px; }
+.tf-modal-title    { font-size: 17px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.tf-modal-subtitle { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.25rem; }
 
-.tf-modal-rows {
-  text-align: left;
-  border-radius: 8px;
-  overflow: hidden;
+.tf-detail-box {
   border: 0.5px solid var(--color-border-tertiary);
-  margin-bottom: 1rem;
-}
-.tf-modal-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 9px 12px;
-  border-bottom: 0.5px solid var(--color-border-tertiary);
-  font-size: 13px;
-}
-.tf-modal-row:last-child { border-bottom: none; }
-.tf-modal-row-lbl { color: var(--color-text-secondary); }
-.tf-modal-row-val { color: var(--color-text-primary); font-weight: 500; }
-.tf-success-text  { color: #0F6E56; }
-
-.tf-reward-badge {
-  background: #FAEEDA;
-  border: 0.5px solid #EF9F27;
-  border-radius: 8px;
-  padding: 10px 14px;
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 1.25rem;
-  font-size: 13px; color: #412402; text-align: left;
-}
-.tf-reward-badge i { font-size: 16px; color: #854F0B; flex-shrink: 0; }
-
-.tf-modal-fail-rows {
-  text-align: left;
   border-radius: 8px;
   overflow: hidden;
-  border: 0.5px solid #F09595;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+.tf-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 12px;
+  font-size: 13px;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+.tf-detail-row:last-child { border-bottom: none; }
+.tf-detail-lbl { color: var(--color-text-secondary); }
+.tf-detail-val { color: var(--color-text-primary); font-weight: 500; }
+.tf-detail-val.success { color: #0F6E56; }
+
+.tf-reward-strip {
+  background: #FAEEDA;
+  border: 1px solid #EF9F27;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+.tf-reward-strip i    { font-size: 16px; color: #854F0B; flex-shrink: 0; }
+.tf-reward-strip span { font-size: 13px; color: #412402; }
+
+.tf-fail-box {
+  border: 1px solid #F09595;
+  border-radius: 8px;
+  overflow: hidden;
   background: #FCEBEB;
   margin-bottom: 1.25rem;
+  text-align: left;
 }
-.tf-modal-fail-row {
-  display: flex; justify-content: space-between;
+.tf-fail-row {
+  display: flex;
+  justify-content: space-between;
   padding: 9px 12px;
-  border-bottom: 0.5px solid #F09595;
   font-size: 13px;
+  border-bottom: 1px solid #F09595;
 }
-.tf-modal-fail-row:last-child { border-bottom: none; }
-.tf-modal-fail-row span:first-child { color: #A32D2D; }
-.tf-modal-fail-row span:last-child  { color: #501313; font-weight: 500; }
+.tf-fail-row:last-child { border-bottom: none; }
+.tf-fail-lbl { color: #A32D2D; }
+.tf-fail-val { color: #501313; font-weight: 500; }
 
-.tf-modal-back {
-  width: 100%; padding: 11px;
-  border-radius: 8px; border: none;
-  background: #534AB7; color: #fff;
-  font-size: 14px; font-weight: 500;
+.tf-modal-btn {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  border-radius: 8px;
+  border: none;
+  background: #534AB7;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.15s;
 }
-.tf-modal-back:hover { background: #3C3489; }
+.tf-modal-btn:hover { background: #3C3489; }
