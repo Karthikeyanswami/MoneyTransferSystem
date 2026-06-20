@@ -166,7 +166,7 @@ public class TransferServiceImpl implements TransferService{
 
 		long points = amount.divide(BigDecimal.valueOf(100)).longValue();
 
-		if(points <= 0) {
+		if(points < 0) {
 			return -1;
 		}
 
