@@ -7,113 +7,123 @@
   to   { opacity: 1; }
 }
 
+* { box-sizing: border-box; }
+
 .tf-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 1rem;
+  background: #f4f6fb;
+  min-height: 100vh;
 }
 
 .tf-title {
   font-size: 22px;
-  font-weight: 500;
-  color: var(--color-text-primary);
+  font-weight: 700;
+  color: #1a1a2e;
   margin-bottom: 1.5rem;
 }
 
 .tf-card {
   width: 100%;
-  max-width: 400px;
-  background: var(--color-background-primary);
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: 12px;
-  padding: 1.5rem;
+  max-width: 420px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
 }
 
 .tf-from-box {
-  background: var(--color-background-secondary);
-  border-radius: 8px;
-  padding: 12px 14px;
+  background: #f0f0ff;
+  border: 1px solid #c7c4f0;
+  border-radius: 10px;
+  padding: 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.25rem;
 }
-.tf-from-lbl  { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 2px; }
-.tf-from-val  { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
-.tf-bank-icon { font-size: 22px; color: #534AB7; }
+.tf-from-lbl { font-size: 12px; color: #6b7280; margin-bottom: 2px; }
+.tf-from-val { font-size: 16px; font-weight: 600; color: #1a1a2e; }
+.tf-bank-emoji { font-size: 22px; }
 
 .tf-arrow-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 1.25rem;
 }
 .tf-arrow-line {
   flex: 1;
-  height: 0.5px;
-  background: var(--color-border-tertiary);
+  height: 1px;
+  background: #e2e8f0;
 }
 .tf-arrow-circle {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: #EEEDFE;
-  border: 1px solid #AFA9EC;
+  background: #ede9fe;
+  border: 1.5px solid #a5b4fc;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  font-size: 16px;
 }
-.tf-arrow-circle i { font-size: 14px; color: #534AB7; }
 
-.tf-field { margin-bottom: 1rem; }
+.tf-field { margin-bottom: 1.1rem; }
 .tf-field label {
   font-size: 13px;
-  color: var(--color-text-secondary);
+  font-weight: 500;
+  color: #374151;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 .tf-field input {
   display: block;
   width: 100%;
-  box-sizing: border-box;
-  padding: 10px 12px;
+  padding: 11px 14px;
   border-radius: 8px;
-  border: 1px solid var(--color-border-tertiary);
-  background: var(--color-background-primary);
-  color: var(--color-text-primary);
+  border: 1.5px solid #e2e8f0;
+  background: #fafafa;
+  color: #1a1a2e;
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.tf-field input:focus { border-color: #7F77DD; }
+.tf-field input:focus {
+  border-color: #7F77DD;
+  box-shadow: 0 0 0 3px rgba(127,119,221,0.15);
+  background: #fff;
+}
 
 .tf-rupee-wrap { position: relative; }
 .tf-rupee-symbol {
   position: absolute;
-  left: 12px;
+  left: 13px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 14px;
-  color: var(--color-text-secondary);
+  color: #6b7280;
   pointer-events: none;
 }
-.tf-rupee-wrap input { padding-left: 26px; }
+.tf-rupee-wrap input { padding-left: 28px; }
 
 .tf-btn-transfer {
   display: block;
   width: 100%;
-  padding: 12px;
-  margin-top: 1.25rem;
-  border-radius: 8px;
+  padding: 13px;
+  margin-top: 1.5rem;
+  border-radius: 10px;
   border: none;
   background: #534AB7;
   color: #fff;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  transition: background 0.2s, transform 0.1s;
 }
 .tf-btn-transfer:hover  { background: #3C3489; }
 .tf-btn-transfer:active { transform: scale(0.98); }
@@ -121,24 +131,24 @@
 .tf-btn-cancel {
   display: block;
   width: 100%;
-  padding: 11px;
-  margin-top: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--color-border-secondary);
-  background: transparent;
-  color: var(--color-text-secondary);
-  font-size: 14px;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  background: #fff;
+  color: #6b7280;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.2s;
 }
-.tf-btn-cancel:hover { background: var(--color-background-secondary); }
+.tf-btn-cancel:hover { background: #f9fafb; }
 
 /* ── Overlay ── */
 .tf-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,84 +157,90 @@
 }
 
 .tf-modal {
-  background: var(--color-background-primary);
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
   width: 90%;
-  max-width: 340px;
-  padding: 1.5rem;
+  max-width: 360px;
+  padding: 1.75rem;
   text-align: center;
   animation: slideIn 0.25s ease;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
 }
 
-.tf-modal-emoji    { font-size: 38px; display: block; margin-bottom: 10px; }
-.tf-modal-title    { font-size: 17px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
-.tf-modal-subtitle { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.25rem; }
+.tf-modal-emoji    { font-size: 42px; display: block; margin-bottom: 10px; }
+.tf-modal-title    { font-size: 18px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+.tf-modal-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 1.25rem; }
 
+/* Success detail rows */
 .tf-detail-box {
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 1rem;
   text-align: left;
+  background: #f9fafb;
 }
 .tf-detail-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 9px 12px;
+  padding: 10px 14px;
   font-size: 13px;
-  border-bottom: 0.5px solid var(--color-border-tertiary);
+  border-bottom: 1px solid #e2e8f0;
 }
 .tf-detail-row:last-child { border-bottom: none; }
-.tf-detail-lbl { color: var(--color-text-secondary); }
-.tf-detail-val { color: var(--color-text-primary); font-weight: 500; }
-.tf-detail-val.success { color: #0F6E56; }
+.tf-detail-lbl { color: #6b7280; }
+.tf-detail-val { color: #1a1a2e; font-weight: 600; }
+.tf-detail-val.success { color: #15803d; }
 
+/* Reward strip */
 .tf-reward-strip {
-  background: #FAEEDA;
-  border: 1px solid #EF9F27;
-  border-radius: 8px;
-  padding: 10px 12px;
+  background: #fef3c7;
+  border: 1.5px solid #f59e0b;
+  border-radius: 10px;
+  padding: 11px 14px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 1.25rem;
   text-align: left;
 }
-.tf-reward-strip i    { font-size: 16px; color: #854F0B; flex-shrink: 0; }
-.tf-reward-strip span { font-size: 13px; color: #412402; }
+.tf-reward-strip .tf-reward-icon { font-size: 18px; flex-shrink: 0; }
+.tf-reward-strip span { font-size: 13px; color: #92400e; font-weight: 500; }
 
+/* Failure rows */
 .tf-fail-box {
-  border: 1px solid #F09595;
-  border-radius: 8px;
+  border: 1.5px solid #fca5a5;
+  border-radius: 10px;
   overflow: hidden;
-  background: #FCEBEB;
+  background: #fff5f5;
   margin-bottom: 1.25rem;
   text-align: left;
 }
 .tf-fail-row {
   display: flex;
   justify-content: space-between;
-  padding: 9px 12px;
+  padding: 10px 14px;
   font-size: 13px;
-  border-bottom: 1px solid #F09595;
+  border-bottom: 1px solid #fca5a5;
 }
 .tf-fail-row:last-child { border-bottom: none; }
-.tf-fail-lbl { color: #A32D2D; }
-.tf-fail-val { color: #501313; font-weight: 500; }
+.tf-fail-lbl { color: #dc2626; }
+.tf-fail-val { color: #7f1d1d; font-weight: 600; }
 
 .tf-modal-btn {
   display: block;
   width: 100%;
-  padding: 11px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
   border: none;
   background: #534AB7;
   color: #fff;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background 0.15s;
+  text-decoration: none;
 }
 .tf-modal-btn:hover { background: #3C3489; }

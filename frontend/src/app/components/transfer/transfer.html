@@ -7,7 +7,7 @@
 
       <ng-container *ngIf="modalCase === 'success'">
         <span class="tf-modal-emoji">✅</span>
-        <p class="tf-modal-title">Transfer successful</p>
+        <p class="tf-modal-title">Transfer Successful</p>
         <p class="tf-modal-subtitle">Your money is on its way.</p>
 
         <div class="tf-detail-box">
@@ -34,14 +34,14 @@
         </div>
 
         <div class="tf-reward-strip" *ngIf="modalDetails.rewardsMessage">
-          <i class="ti ti-star" aria-hidden="true"></i>
+          <span class="tf-reward-icon">⭐</span>
           <span>{{ modalDetails.rewardsMessage }}</span>
         </div>
       </ng-container>
 
       <ng-container *ngIf="modalCase === 'failure'">
         <span class="tf-modal-emoji">❌</span>
-        <p class="tf-modal-title">Transfer failed</p>
+        <p class="tf-modal-title">Transfer Failed</p>
         <p class="tf-modal-subtitle">Something went wrong. Please try again.</p>
 
         <div class="tf-fail-box">
@@ -70,19 +70,18 @@
 
   <!-- Form -->
   <div class="tf-card">
+
     <div class="tf-from-box">
       <div>
         <div class="tf-from-lbl">From account</div>
         <div class="tf-from-val">{{ transferReq.fromAccountId }}</div>
       </div>
-      <i class="ti ti-building-bank tf-bank-icon" aria-hidden="true"></i>
+      <span class="tf-bank-emoji">🏦</span>
     </div>
 
     <div class="tf-arrow-row">
       <div class="tf-arrow-line"></div>
-      <div class="tf-arrow-circle">
-        <i class="ti ti-arrow-down" aria-hidden="true"></i>
-      </div>
+      <div class="tf-arrow-circle">↓</div>
       <div class="tf-arrow-line"></div>
     </div>
 
@@ -113,5 +112,6 @@
     <button class="tf-btn-cancel" (click)="cancelTransaction()">
       Cancel
     </button>
+
   </div>
 </div>
