@@ -68,4 +68,50 @@
     </div>
   </div>
 
-  <!--
+  <!-- Form -->
+  <div class="tf-card">
+    <div class="tf-from-box">
+      <div>
+        <div class="tf-from-lbl">From account</div>
+        <div class="tf-from-val">{{ transferReq.fromAccountId }}</div>
+      </div>
+      <i class="ti ti-building-bank tf-bank-icon" aria-hidden="true"></i>
+    </div>
+
+    <div class="tf-arrow-row">
+      <div class="tf-arrow-line"></div>
+      <div class="tf-arrow-circle">
+        <i class="ti ti-arrow-down" aria-hidden="true"></i>
+      </div>
+      <div class="tf-arrow-line"></div>
+    </div>
+
+    <div class="tf-field">
+      <label>To account number</label>
+      <input type="text" [(ngModel)]="transferReq.toAccountId"
+             placeholder="Enter account number"/>
+    </div>
+
+    <div class="tf-field">
+      <label>Amount</label>
+      <div class="tf-rupee-wrap">
+        <span class="tf-rupee-symbol">₹</span>
+        <input type="number" [(ngModel)]="transferReq.amount"
+               placeholder="0.00"/>
+      </div>
+    </div>
+
+    <div class="tf-field">
+      <label>Note (optional)</label>
+      <input type="text" [(ngModel)]="note"
+             placeholder="What's this for?"/>
+    </div>
+
+    <button class="tf-btn-transfer" (click)="transferMoney()">
+      Transfer Now
+    </button>
+    <button class="tf-btn-cancel" (click)="cancelTransaction()">
+      Cancel
+    </button>
+  </div>
+</div>
