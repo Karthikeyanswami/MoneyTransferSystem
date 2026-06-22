@@ -166,9 +166,6 @@ public class TransferServiceImpl implements TransferService{
 
 		long points = amount.divide(BigDecimal.valueOf(100)).longValue();
 
-		if(points < 0) {
-			return -1;
-		}
 
 		Optional<RewardAccount> rewardOpt = rewardRepo.findById(accountId);
 
