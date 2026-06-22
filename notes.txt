@@ -1,0 +1,9 @@
+Java is the programming language.
+
+Spring is a Java framework that provides dependency injection, web development, security, and database access features.
+
+Spring Boot is an extension of Spring that reduces configuration through auto-configuration, starter dependencies, and embedded servers, making Spring applications easier to build.
+
+Angular is a frontend framework that runs in the browser and communicates with backend services (such as Spring Boot APIs) to build interactive web applications.
+
+
